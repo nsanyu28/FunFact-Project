@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #101827, #1d4ed8);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+        }
+
+        button {
+            padding: 15px 25px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #fact {
+            margin: 30px 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>☁️ Cloud Fun Facts</h1>
+    <p>Discover interesting facts about cloud computing!</p>
+
+    <div id="fact">Click the button to discover a fact.</div>
+
+    <button onclick="getFact()">Generate Fact</button>
+</div>
+
+<script>
+async function getFact() {
+    const factElement = document.getElementById("fact");
+    factElement.innerHTML = "Loading...";
+
+    try {
+        const response = await fetch(
+            "YOUR_API_URL/funfact"
+        );
+
+        const data = await response.json();
+        factElement.innerHTML = data.fact;
+    } catch (error) {
+        factElement.innerHTML = "Unable to load fact.";
+    }
+}
+</script>
+
+</body>
+</html>
